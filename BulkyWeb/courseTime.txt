@@ -1,0 +1,15 @@
+https://www.bing.com/videos/riverview/relatedvideo?q=what%20visual%20studios%20version%20do%20i%20need%20to%20run%20and%20upgrade%20old%20applications%20which%20use%20.net%202%20and%20.net%204%20frameworks&mid=5375582A5AE90CB37EB55375582A5AE90CB37EB5&ajaxhist=0
+
+
+15/09/2025	1:27
+16/09/2025	1:34
+17/09/2025	1:35
+06/10/2025	1.45
+	Entity Framework -	add-migration AddCategoryTableToDB
+						upate-database
+6/10/2025	2:10
+	Displaying Categories on view - from database using @model 
+	www.Bootswatch.com - //for free themes for your website
+	www.icons-getbootstrap.com -> usage
+6/10/2025	2:29
+	Adding category view - input GUI
