@@ -13,3 +13,6 @@ https://www.bing.com/videos/riverview/relatedvideo?q=what%20visual%20studios%20v
 	www.icons-getbootstrap.com -> usage
 6/10/2025	2:29
 	Adding category view - input GUI
+7/10/2025	2:58
+	Input validation
+	Create new category in database
