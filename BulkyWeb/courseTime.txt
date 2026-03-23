@@ -16,3 +16,13 @@ https://www.bing.com/videos/riverview/relatedvideo?q=what%20visual%20studios%20v
 7/10/2025	2:58
 	Input validation
 	Create new category in database
+
+
+DBContext
+	Entity Framework -	add-migration AddCategoryTableToDB
+						upate-database
+
+04/03/2026	section 41 Server Side Validations
+23/03/2026 - Section 2 completed
+	CRUD operations for Category , Notifications working
+	Used toastr - github.com/CodeSeven/toastr (added to layout _Notification partial view)
