@@ -26,3 +26,5 @@ DBContext
 23/03/2026 - Section 2 completed
 	CRUD operations for Category , Notifications working
 	Used toastr - github.com/CodeSeven/toastr (added to layout _Notification partial view)
+25/03/2026 - Section 3 completed - BulkyWebRazor project created and working
+26/03/2026 - Section 4 almost completed on 68.How to reset a database
