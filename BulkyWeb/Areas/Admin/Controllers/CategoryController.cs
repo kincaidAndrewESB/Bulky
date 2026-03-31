@@ -1,26 +1,26 @@
-﻿using Bulky.DataAccess.Data;
-using Bulky.Models.Models;
+﻿using BulkyBook.DataAccess.Data;
+using BulkyBook.Models.Models;
 using Microsoft.AspNetCore.Mvc;
-using Bulky.DataAccess.Repository;
-using Bulky.DataAccess.Repository.IRepository;
+using BulkyBook.DataAccess.Repository.IRepository;
 
 
-namespace BulkyWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
 
-        private readonly ICategoryRepository _categoryRepo;
+        private readonly IUnitOfWork _unitOfWork;
         //private readonly ApplicationDbContext _db;
-        public CategoryController(ICategoryRepository db)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _categoryRepo = db;
+            _unitOfWork = unitOfWork;
 
         }
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -45,8 +45,8 @@ namespace BulkyWeb.Controllers
              Use JavaScript to carry out client side validation is more efficient*/
             if (ModelState.IsValid)
             {
-                _categoryRepo.Add(obj);
-                _categoryRepo.Save();//this executes the database update when you are ready
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();//this executes the database update when you are ready
                 TempData["Success"] = "Category created successfully!";
                 return RedirectToAction("Index");
             }
@@ -61,7 +61,7 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _categoryRepo.Get(u=>u.Id==id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id==id);
             //Category? categoryFromDb1 = _categoryRepo.FirstOrDefault(c=>c.Name.Contains("Sci"));
             //Category? categoryFromDb2 = _categoryRepo.Where(u=>u.Id==id).FirstOrDefault();
             if (categoryFromDb == null)
@@ -85,8 +85,8 @@ namespace BulkyWeb.Controllers
              //Use JavaScript to carry out client side validation is more efficient*/
             if (ModelState.IsValid)
             {
-                _categoryRepo.Update(obj);
-                _categoryRepo.Save();//this executes the database update when you are ready
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();//this executes the database update when you are ready
                 TempData["Success"] = "Category updated successfully!";
                 return RedirectToAction("Index");
             }
@@ -101,7 +101,7 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-           Category? categoryFromDb = _categoryRepo.Get(u=> u.Id == id);
+           Category? categoryFromDb = _unitOfWork.Category.Get(u=> u.Id == id);
            if (categoryFromDb == null)
             {
                 return NotFound();
@@ -114,13 +114,13 @@ namespace BulkyWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _categoryRepo.Get(u=>u.Id == id);
+            Category? obj = _unitOfWork.Category.Get(u=>u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _categoryRepo.Remove(obj);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["Success"] = "Category deleted successfully!";
 
             return RedirectToAction("Index");
