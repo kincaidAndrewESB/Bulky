@@ -29,3 +29,4 @@ DBContext
 25/03/2026 - Section 3 completed - BulkyBookWebRazor project created and working
 26/03/2026 - Section 4 almost completed on 68.How to reset a database
 30/03/2026 - Section 5 77 - Unit of Work implementation
+31/03/2026 - Section 6 88 - Projections in EF Core 

@@ -6,7 +6,7 @@ namespace BulkyBook.Models.Models
     public class Category
     {
         [Key] //not required as Id will be recognised as Primary Key
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         [Required]//data anotation
         [MaxLength(30)]
         [DisplayName("Category Name")] 

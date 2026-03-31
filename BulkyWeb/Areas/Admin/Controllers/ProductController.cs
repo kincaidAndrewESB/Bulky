@@ -7,12 +7,12 @@ using BulkyBook.DataAccess.Repository.IRepository;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class ProductController : Controller
     {
 
         private readonly IUnitOfWork _unitOfWork;
         //private readonly ApplicationDbContext _db;
-        public CategoryController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 
@@ -20,8 +20,8 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
-            return View(objCategoryList);
+            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            return View(objProductList);
         }
 
         public IActionResult Create()
@@ -30,24 +30,21 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Category obj)
+        public IActionResult Create(Product obj)
         {
             //Additional Input Validation options - these are server side and require a reload
-            if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name.");
-            }
-            //if (obj.Name != null &&obj.Name.ToLower() == "test")
+            //if (obj.Title != null && obj.Title == obj.ISBN.ToString())
             //{
-            //    ModelState.AddModelError("", "test is an invalid value.");
+            //    ModelState.AddModelError("Title", "The DisplayOrder cannot exactly match the Title.");
             //}
+            
             /*
              Use JavaScript to carry out client side validation is more efficient*/
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Product.Add(obj);
                 _unitOfWork.Save();//this executes the database update when you are ready
-                TempData["Success"] = "Category created successfully!";
+                TempData["Success"] = "Product created successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -61,33 +58,33 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.CategoryId==id);
-            //Category? categoryFromDb1 = _categoryRepo.FirstOrDefault(c=>c.Name.Contains("Sci"));
-            //Category? categoryFromDb2 = _categoryRepo.Where(u=>u.CategoryId==id).FirstOrDefault();
-            if (categoryFromDb == null)
+            Product? productFromDb = _unitOfWork.Product.Get(u=>u.ProductId==id);
+            //Product? productFromDb1 = _productRepo.FirstOrDefault(c=>c.Title.Contains("Sci"));
+            //Product? productFromDb2 = _productRepo.Where(u=>u.ProductId==id).FirstOrDefault();
+            if (productFromDb == null)
             {
                 return NotFound();
             }
 
-            //Category objCategory = _db.Categories.FirstOrDefault( c => c.CategoryId == id.Value);
-            return View(categoryFromDb);
+            //Product objProduct = _db.Categories.FirstOrDefault( c => c.ProductId == id.Value);
+            return View(productFromDb);
         }
 
         [HttpPost]
-        public IActionResult Edit(Category obj)
+        public IActionResult Edit(Product obj)
         {
             //Additional Input Validation options - these are server side and require a reload
-            if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("Name", "The DisplayOrder cannot exactly match the Name.");
-            }
+            //if (obj.Title != null && obj.Title == obj.ISBN.ToString())
+            //{
+            //    ModelState.AddModelError("Title", "The DisplayOrder cannot exactly match the Title.");
+            //}
 
              //Use JavaScript to carry out client side validation is more efficient*/
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Product.Update(obj);
                 _unitOfWork.Save();//this executes the database update when you are ready
-                TempData["Success"] = "Category updated successfully!";
+                TempData["Success"] = "Product updated successfully!";
                 return RedirectToAction("Index");
             }
             return View();
@@ -101,27 +98,27 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-           Category? categoryFromDb = _unitOfWork.Category.Get(u=> u.CategoryId == id);
-           if (categoryFromDb == null)
+           Product? productFromDb = _unitOfWork.Product.Get(u=> u.ProductId == id);
+           if (productFromDb == null)
             {
                 return NotFound();
             }
 
-            //Category objCategory = _categoryRepo.FirstOrDefault( c => c.CategoryId == id.Value);
-            return View(categoryFromDb);
+            //Product objProduct = _productRepo.FirstOrDefault( c => c.ProductId == id.Value);
+            return View(productFromDb);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _unitOfWork.Category.Get(u=>u.CategoryId == id);
+            Product? obj = _unitOfWork.Product.Get(u=>u.ProductId == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
-            TempData["Success"] = "Category deleted successfully!";
+            TempData["Success"] = "Product deleted successfully!";
 
             return RedirectToAction("Index");
         }
