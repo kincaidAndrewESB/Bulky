@@ -36,3 +36,4 @@ DBContext
 			https://datatables.net/
 			https://sweetalert2.github.io/
 
+30/07/2026 - Section 7 (314) - User registration with role management

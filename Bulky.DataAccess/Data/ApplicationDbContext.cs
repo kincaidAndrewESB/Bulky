@@ -17,6 +17,7 @@ namespace BulkyBook.DataAccess.Data
         //this will create a table called Categories based on Category Model
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
