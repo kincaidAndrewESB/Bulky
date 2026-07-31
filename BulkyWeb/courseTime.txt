@@ -37,3 +37,5 @@ DBContext
 			https://sweetalert2.github.io/
 
 30/07/2026 - Section 7 (314) - User registration with role management
+31/07/2026 - Section 7 (318) complete Register users with full details 
+	Not sure if OLD course sections will be available after this

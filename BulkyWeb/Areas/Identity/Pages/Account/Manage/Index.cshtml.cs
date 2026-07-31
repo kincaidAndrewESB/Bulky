@@ -55,6 +55,16 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required]
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
+            public string? Role { get; set; }
+            public string? Name { get; set; }
+            public string? StreetAddress { get; set; }
+            public string? City { get; set; }
+            public string? State { get; set; }
+            public string? PostalCode { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -68,7 +78,7 @@ namespace BulkyBookWeb.Areas.Identity.Pages.Account.Manage
             Username = userName;
 
             Input = new InputModel
-            {
+            {                
                 PhoneNumber = phoneNumber
             };
         }
