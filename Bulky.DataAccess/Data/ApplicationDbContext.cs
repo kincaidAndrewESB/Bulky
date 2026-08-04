@@ -17,6 +17,7 @@ namespace BulkyBook.DataAccess.Data
         //this will create a table called Categories based on Category Model
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Company> Companies { get; set; } 
         public DbSet<ApplicationUser> ApplicationUsers { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -112,6 +113,11 @@ namespace BulkyBook.DataAccess.Data
                     CategoryId = 1,
                     ImageUrl = ""
                 });
+            modelBuilder.Entity<Company>().HasData(
+                new Company { CompanyId = 12, Name = "Tech Solution", StreetAddress = "123 Tech St", City = "Lala Land", State = "Tech State", PostalCode = "12345", PhoneNumber = "123-456-7890" },
+                new Company { CompanyId = 2, Name = "Vivid Books", StreetAddress = "99 Vid St", City = "Tech City", State = "IL", PostalCode = "666666", PhoneNumber = "777-999-0000" },
+                new Company { CompanyId = 3, Name = "Readers Club", StreetAddress = "999 Main St", City = "Lala Land", State = "NY", PostalCode = "99999", PhoneNumber = "111-333-5555" }
+                );
         }
 
     }
